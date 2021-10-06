@@ -21,11 +21,11 @@ struct DataClass: Codable {
 
 // MARK: - DataAttributes
 struct DataAttributes: Codable {
-    let cryptocoins, commodities: [Commodity]
-    let fiats: [Fiat]
+    let cryptocoins, commodities: [AssetMD]
+    let fiats: [FiatMD]
     let wallets, commodityWallets: [WalletMD]
     let fiatwallets: [FiatWalletMD]
-
+    
     enum CodingKeys: String, CodingKey {
         case cryptocoins, commodities, fiats, wallets
         case commodityWallets = "commodity_wallets"
@@ -33,18 +33,18 @@ struct DataAttributes: Codable {
     }
 }
 
-// MARK: - Commodity
-struct Commodity: Codable {
+// MARK: - AssetMD
+struct AssetMD: Codable {
     let type: String
-    let attributes: CommodityAttributes
+    let attributes: AssetMDAttributes
     let id: String
 }
 
-// MARK: - CommodityAttributes
-struct CommodityAttributes: Codable {
+// MARK: - AssetMDAttributes
+struct AssetMDAttributes: Codable {
     let symbol, name, averagePrice, logo, logoDark: String
     let precisionFiatPrice: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case symbol, name
         case averagePrice = "avg_price"
@@ -54,15 +54,15 @@ struct CommodityAttributes: Codable {
     }
 }
 
-// MARK: - Fiat
-struct Fiat: Codable {
+// MARK: - FiatMD
+struct FiatMD: Codable {
     let type: String
-    let attributes: FiatAttributes
+    let attributes: FiatMDAttributes
     let id: String
 }
 
-// MARK: - FiatAttributes
-struct FiatAttributes: Codable {
+// MARK: - FiatMDAttributes
+struct FiatMDAttributes: Codable {
     let symbol, name, logo, logo_dark: String
     let has_wallets: Bool
 }
@@ -70,18 +70,18 @@ struct FiatAttributes: Codable {
 // MARK: - Wallet
 struct WalletMD: Codable {
     let type: String
-    let attributes: CommodityWalletAttributes
+    let attributes: WalletMDAttributes
     let id: String
 }
 
-// MARK: - CommodityWalletAttributes
+// MARK: - WalletMDAttributes
 
-struct CommodityWalletAttributes: Codable {
+struct WalletMDAttributes: Codable {
     let cryptocoinID, cryptocoinSymbol, balance: String
     let isDefault: Bool
     let name: String
     let deleted: Bool
-
+    
     enum CodingKeys: String, CodingKey {
         case cryptocoinID = "cryptocoin_id"
         case cryptocoinSymbol = "cryptocoin_symbol"
@@ -102,7 +102,7 @@ struct FiatWalletMD: Codable {
 // MARK: - FiatwalletAttributes
 struct FiatwalletAttributes: Codable {
     let fiatID, fiatSymbol, balance, name: String
-
+    
     enum CodingKeys: String, CodingKey {
         case fiatID = "fiat_id"
         case fiatSymbol = "fiat_symbol"

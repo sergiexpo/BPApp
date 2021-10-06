@@ -9,7 +9,7 @@ import UIKit
 import Lottie
 
 class SplashScreenViewController: UIViewController {
-
+    
     
     @IBOutlet weak var viewAnimation: UIView!
     
@@ -25,7 +25,7 @@ class SplashScreenViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-      }
+    }
     
     private func configureViews(){
         progressBar = .init(name: "animation")
@@ -45,8 +45,8 @@ class SplashScreenViewController: UIViewController {
             self.performSegue(withIdentifier: "FROM_SPLASH_TO_MAIN", sender: nil)
         }
     }
-
-        
+    
+    
     
     
     

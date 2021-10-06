@@ -32,19 +32,19 @@ class WalletViewCell:UITableViewCell{
         balanceLabel.textColor = UIColor.init(named: "green_2")
     }
     
-     override func awakeFromNib() {
-         super.awakeFromNib()
+    override func awakeFromNib() {
+        super.awakeFromNib()
         viewCellWallet.layer.cornerRadius = 8.0
         viewCellWallet.showShadow()
         labelDefault.text = nil
-     }
+    }
     
     func configure(wallet: Wallet){
         
         let logoUrl = (DataManager.shared.isAppInDarkMode()) ? wallet.logo_dark : wallet.logo
         
         if let icon = logoUrl {
-        iconView.addSubview(DataManager.shared.getSVGImageFromURL(url: icon, view: iconView))
+            iconView.addSubview(DataManager.shared.getSVGImageFromURL(url: icon, view: iconView))
         }
         nameLabel.text = wallet.name
         symbolLabel.text = wallet.symbol
@@ -60,7 +60,7 @@ class WalletViewCell:UITableViewCell{
             stackViewCellWallet.layer.cornerRadius = 8.0
         }
     }
- 
+    
     
 }
 

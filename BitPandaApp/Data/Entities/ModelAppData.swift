@@ -7,17 +7,6 @@
 
 import UIKit
 
-/*protocol GeneralAsset{
-    var id: String {get set}
-    var type: String {get set}
-    var name: String {get set}
-    var symbol: String {get set}
-    var logo: String {get set}
-    var logo_dark: String {get set}
-    
-} */
-
-
 class Asset {
     var id: String
     var type: String
@@ -29,7 +18,7 @@ class Asset {
     var precisionFiatPrice: Int?
     var has_wallets: Bool?
     
-    init(generalAsset: Commodity, typeWallet: String) {
+    init(generalAsset: AssetMD, typeWallet: String) {
         id = generalAsset.id
         type = typeWallet
         name = generalAsset.attributes.name
@@ -41,7 +30,7 @@ class Asset {
         has_wallets = nil
     }
     
-    init(fiatAsset: Fiat, typeWallet: String) {
+    init(fiatAsset: FiatMD, typeWallet: String) {
         id = fiatAsset.id
         type = typeWallet
         name = fiatAsset.attributes.name
@@ -105,7 +94,7 @@ class Wallet {
             wallet.logo_dark = asset.logo_dark
         }
     }
-
+    
     
 }
 

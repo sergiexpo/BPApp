@@ -16,9 +16,9 @@ class DataManager: Codable{
     private init() {}
     // MARK: - SINGLETON end -
     
-    var cryptocoinsList = [Commodity]()
-    var commoditiesList = [Commodity]()
-    var fiatsList = [Fiat]()
+    var cryptocoinsList = [AssetMD]()
+    var commoditiesList = [AssetMD]()
+    var fiatsList = [FiatMD]()
     var walletsList = [WalletMD]()
     var commodityWalletsList = [WalletMD]()
     var fiatWalletsList = [FiatWalletMD]()
@@ -28,8 +28,8 @@ class DataManager: Codable{
         let url = URL(fileURLWithPath: path)
         
         do{
-           let data = try Data(contentsOf: url)
-           let response = try JSONDecoder().decode(Response.self, from: data)
+            let data = try Data(contentsOf: url)
+            let response = try JSONDecoder().decode(Response.self, from: data)
             getAllAppData(response)
         }catch{
             print(error)
@@ -43,13 +43,12 @@ class DataManager: Codable{
         getAllWallets(response)
         getAllCommodityWallets(response)
         getAllFiatWallets(response)
-
+        
     }
-    
     
     func getAllCryptocoins(_ response : Response){
         response.data.attributes.cryptocoins.forEach{
-                cryptocoinsList.append($0)
+            cryptocoinsList.append($0)
         }
     }
     
@@ -83,27 +82,8 @@ class DataManager: Codable{
         }
     }
     
-    func currencyFormatter(_ number: String, _ nDecimals: Int) -> String{
-        let currencyFormatter = NumberFormatter()
-        currencyFormatter.usesGroupingSeparator = true
-        currencyFormatter.numberStyle = .currency
-        currencyFormatter.minimumFractionDigits = nDecimals
-        currencyFormatter.maximumFractionDigits = nDecimals
-        currencyFormatter.locale = Locale.current
-        let numberFormatted = currencyFormatter.string(from: Double(number)! as NSNumber)!
-        return numberFormatted
-    }
-    
-    func getSVGImageFromURL(url: String, view: UIView) -> SVGImageView{
-            let url = URL(string: url)
-            let svgImageView = SVGImageView.init(contentsOf: url!)
-            svgImageView.frame = view.bounds
-            svgImageView.contentMode = .scaleAspectFit
-            return svgImageView
-    }
-    
     func getAssetDataScreen() -> [Asset]{
-       var list = [Asset]()
+        var list = [Asset]()
         cryptocoinsList.forEach{
             list.append(mapMDCommodityToAppAsset($0,AssetTypes.cryptoType.rawValue))
         }
@@ -118,16 +98,16 @@ class DataManager: Codable{
         return list
     }
     
-    func mapMDCommodityToAppAsset(_ mdCommodity: Commodity,_ typeWallet: String) -> Asset{
+    func mapMDCommodityToAppAsset(_ mdCommodity: AssetMD,_ typeWallet: String) -> Asset{
         return Asset(generalAsset: mdCommodity, typeWallet: typeWallet)
     }
     
-    func mapMDFiatToAppFiatAsset(_ mdFiat: Fiat,_ typeWallet: String) -> Asset{
+    func mapMDFiatToAppFiatAsset(_ mdFiat: FiatMD,_ typeWallet: String) -> Asset{
         return Asset(fiatAsset: mdFiat, typeWallet: typeWallet)
     }
     
     func getWalletDataScreen() -> [Wallet]{
-       var list = [Wallet]()
+        var list = [Wallet]()
         walletsList.forEach{
             if !($0.attributes.deleted){
                 list.append(mapMDWalletToAppWallet($0, WalletTypes.cryptoWalletType.rawValue))
@@ -151,7 +131,7 @@ class DataManager: Codable{
     func mapMDFiatWalletToAppFiatWallet(_ mdFiatWallet: FiatWalletMD, _ typeWallet: String) -> Wallet{
         return Wallet(fiatWallet: mdFiatWallet, typeWallet: typeWallet)
     }
-
+    
     func sortWalletsByBalance(_ walletList : [Wallet]) -> [Wallet]{
         return walletList.sorted{$0.balance.localizedStandardCompare($1.balance) == .orderedDescending}
     }
@@ -177,7 +157,26 @@ class DataManager: Codable{
         }
         return resultWalletList
     }
- 
+    
+    func currencyFormatter(_ number: String, _ nDecimals: Int) -> String{
+        let currencyFormatter = NumberFormatter()
+        currencyFormatter.usesGroupingSeparator = true
+        currencyFormatter.numberStyle = .currency
+        currencyFormatter.minimumFractionDigits = nDecimals
+        currencyFormatter.maximumFractionDigits = nDecimals
+        currencyFormatter.locale = Locale.current
+        let numberFormatted = currencyFormatter.string(from: Double(number)! as NSNumber)!
+        return numberFormatted
+    }
+    
+    func getSVGImageFromURL(url: String, view: UIView) -> SVGImageView{
+        let url = URL(string: url)
+        let svgImageView = SVGImageView.init(contentsOf: url!)
+        svgImageView.frame = view.bounds
+        svgImageView.contentMode = .scaleAspectFit
+        return svgImageView
+    }
+    
     func isAppInDarkMode() -> Bool {
         if #available(iOS 13.0, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark {

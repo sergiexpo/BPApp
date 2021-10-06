@@ -8,7 +8,7 @@
 import UIKit
 
 class AssetViewController: UIViewController {
-
+    
     //MARK: - IBOutlets
     @IBOutlet weak var titleLabelAssets: UILabel!
     @IBOutlet weak var tableViewAssets: UITableView!
@@ -75,12 +75,12 @@ class AssetViewController: UIViewController {
     
     
     func showFilter (style: UIAlertController.Style,
-                    title: String,
-                    message: String,
-                    filterAll: ((UIAlertAction) -> Void)? = nil,
-                    filterCriptocoins:((UIAlertAction) -> Void)? = nil,
-                    filterCommodities:((UIAlertAction) -> Void)? = nil,
-                    filterFiats:((UIAlertAction) -> Void)? = nil){
+                     title: String,
+                     message: String,
+                     filterAll: ((UIAlertAction) -> Void)? = nil,
+                     filterCriptocoins:((UIAlertAction) -> Void)? = nil,
+                     filterCommodities:((UIAlertAction) -> Void)? = nil,
+                     filterFiats:((UIAlertAction) -> Void)? = nil){
         
         let alert = UIAlertController(title: title,
                                       message: message,
@@ -109,6 +109,7 @@ class AssetViewController: UIViewController {
     
 }
 
+// MARK: -Extension functions
 extension AssetViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -130,11 +131,11 @@ extension AssetViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-             let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -50, 0, -50)
-             cell.layer.transform = rotationTransform
-             UIView.animate(withDuration: 0.5, animations: { cell.layer.transform = CATransform3DIdentity })
-         } 
-
+        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -50, 0, -50)
+        cell.layer.transform = rotationTransform
+        UIView.animate(withDuration: 0.5, animations: { cell.layer.transform = CATransform3DIdentity })
+    }
+    
     
     
 }

@@ -26,8 +26,8 @@ class AssetViewCell:UITableViewCell{
         avgPriceLabel.text = nil
     }
     
-     override func awakeFromNib() {
-         super.awakeFromNib()
+    override func awakeFromNib() {
+        super.awakeFromNib()
         viewCellAsset.layer.cornerRadius = 8.0
         viewCellAsset.showShadow()
         
@@ -35,7 +35,7 @@ class AssetViewCell:UITableViewCell{
         if (screenWidth < 375 ){
             adjustUIToSmallScreen()
         }
-     }
+    }
     
     func configure(asset: Asset){
         let logoUrl = (DataManager.shared.isAppInDarkMode()) ? asset.logo_dark : asset.logo
@@ -47,7 +47,7 @@ class AssetViewCell:UITableViewCell{
             avgPriceLabel.text = DataManager.shared.currencyFormatter(price, nDecimals)
         }
     }
- 
+    
     func adjustUIToSmallScreen(){
         nameLabel.font = nameLabel.font.withSize(15)
         symbolLabel.font = symbolLabel.font.withSize(15)

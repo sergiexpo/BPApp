@@ -27,7 +27,6 @@
 		E5C24ABF2709BDDE00228033 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C24ABE2709BDDE00228033 /* WalletViewController.swift */; };
 		E5F7D4F12707B5FB000BE5B8 /* AssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F7D4F02707B5FB000BE5B8 /* AssetViewCell.swift */; };
 		E5F7D4F42707B768000BE5B8 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F7D4F32707B768000BE5B8 /* UIViewExtension.swift */; };
-		E5F7D4F72707BA9D000BE5B8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E5F7D4F62707BA9D000BE5B8 /* Kingfisher */; };
 		E5F7D4FA2707BFD9000BE5B8 /* PocketSVG in Frameworks */ = {isa = PBXBuildFile; productRef = E5F7D4F92707BFD9000BE5B8 /* PocketSVG */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +59,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5F7D4F72707BA9D000BE5B8 /* Kingfisher in Frameworks */,
 				E5F7D4FA2707BFD9000BE5B8 /* PocketSVG in Frameworks */,
 				E517B11A270A18C300F19702 /* Lottie in Frameworks */,
 			);
@@ -201,7 +199,6 @@
 			);
 			name = BitPandaApp;
 			packageProductDependencies = (
-				E5F7D4F62707BA9D000BE5B8 /* Kingfisher */,
 				E5F7D4F92707BFD9000BE5B8 /* PocketSVG */,
 				E517B119270A18C300F19702 /* Lottie */,
 			);
@@ -233,7 +230,6 @@
 			);
 			mainGroup = E5BC965E27077F57000A2451;
 			packageReferences = (
-				E5F7D4F52707BA9D000BE5B8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				E5F7D4F82707BFD9000BE5B8 /* XCRemoteSwiftPackageReference "PocketSVG" */,
 				E517B118270A18C300F19702 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
@@ -495,14 +491,6 @@
 				minimumVersion = 3.2.3;
 			};
 		};
-		E5F7D4F52707BA9D000BE5B8 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
 		E5F7D4F82707BFD9000BE5B8 /* XCRemoteSwiftPackageReference "PocketSVG" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pocketsvg/PocketSVG.git";
@@ -518,11 +506,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E517B118270A18C300F19702 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
-		};
-		E5F7D4F62707BA9D000BE5B8 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E5F7D4F52707BA9D000BE5B8 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
 		};
 		E5F7D4F92707BFD9000BE5B8 /* PocketSVG */ = {
 			isa = XCSwiftPackageProductDependency;

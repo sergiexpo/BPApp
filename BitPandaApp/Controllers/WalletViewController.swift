@@ -48,7 +48,7 @@ class WalletViewController: UIViewController, UIGestureRecognizerDelegate {
         tableViewWallets.dataSource = self
     }
     
-  
+    
     func initWalletsList(){
         self.walletsList = DataManager.shared.getWalletDataScreen()
         self.walletsList = DataManager.shared.sortWalletsByBalance(self.walletsList)
@@ -62,7 +62,7 @@ class WalletViewController: UIViewController, UIGestureRecognizerDelegate {
         self.walletGroups.append(WalletTypes.commoWalletType.rawValue)
         self.walletGroups.append(WalletTypes.fiatWalletType.rawValue)
     }
-
+    
     func initExpandGroupdList(groups: [String]) -> [Bool]{
         var list : [Bool] = []
         if (groups.count > 0){
@@ -73,10 +73,10 @@ class WalletViewController: UIViewController, UIGestureRecognizerDelegate {
         return list
     }
     
-
+    
 }
 
-
+// MARK: -Extension functions
 extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -84,7 +84,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       // walletsList.count
+        // walletsList.count
         if expandGroups.count > 0 {
             return self.expandGroups[section] ? getRowsForGroup(wallets: walletsList, group: walletGroups[section]) : 0
         } else {
@@ -95,8 +95,8 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-       let cellType = (walletGroups[indexPath.section] == WalletTypes.fiatWalletType.rawValue) ? "FiatWalletViewCell" : "WalletViewCell"
-            
+        let cellType = (walletGroups[indexPath.section] == WalletTypes.fiatWalletType.rawValue) ? "FiatWalletViewCell" : "WalletViewCell"
+        
         
         let walletsForGroup = getWalletsForGroup(wallets: walletsList, group: walletGroups[indexPath.section])
         
@@ -106,7 +106,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.configure(wallet: walletsForGroup[indexPath.row])
             cell?.separatorInset = UIEdgeInsets(top: 0, left: cell!.bounds.size.width, bottom: 0, right: 0)
         }
-
+        
         return cell ?? UITableViewCell()
     }
     
@@ -141,12 +141,12 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
         labelIcon.text = expandGroups[section] ? "-" : "+"
         labelIcon.font = UIFont.boldSystemFont(ofSize: 32.0)
         labelIcon.textColor = .white
-
+        
         headerView.addSubview(label)
         headerView.addSubview(labelIcon)
         headerView.layer.cornerRadius = 5
         headerView.backgroundColor = UIColor.init(named: "green_1")
-
+        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         tapRecognizer.delegate = self
         tapRecognizer.numberOfTapsRequired = 1
@@ -159,7 +159,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         if let currrentSection = sender.view?.tag  {
-        expandGroups[currrentSection] = !expandGroups[currrentSection]
+            expandGroups[currrentSection] = !expandGroups[currrentSection]
             animationSection = currrentSection
         }
         DispatchQueue.main.async {
@@ -180,17 +180,17 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     func getWalletsForGroup(wallets: [Wallet], group: String) -> [Wallet]{
         return wallets.filter{$0.type == group}
     }
-
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
-       if indexPath.section == animationSection {
-       
-             let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -50, 0, -50)
-
-             cell.layer.transform = rotationTransform
-
-             UIView.animate(withDuration: 0.5, animations: { cell.layer.transform = CATransform3DIdentity })
-       }
-         }
+        
+        if indexPath.section == animationSection {
+            
+            let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -50, 0, -50)
+            
+            cell.layer.transform = rotationTransform
+            
+            UIView.animate(withDuration: 0.5, animations: { cell.layer.transform = CATransform3DIdentity })
+        }
+    }
     
 }
