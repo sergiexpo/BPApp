@@ -422,12 +422,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BitPanda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHE-Ab-O2b">
                                 <rect key="frame" x="156.5" y="433" width="101.5" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wjf-C1-nvr"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="white_1"/>
                         <constraints>
                             <constraint firstItem="Xrn-Qd-gXo" firstAttribute="top" secondItem="cHE-Ab-O2b" secondAttribute="bottom" constant="32" id="3UP-JT-Vnc"/>
                             <constraint firstItem="cHE-Ab-O2b" firstAttribute="centerX" secondItem="nZu-Qo-38z" secondAttribute="centerX" id="9HD-z9-8aG"/>
@@ -468,7 +468,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SplashScreenPanda" width="2254" height="1500"/>
+        <image name="SplashScreenPanda" width="1754.5" height="1241"/>
         <image name="eurosign.circle" catalog="system" width="128" height="121"/>
         <image name="scribble.variable" catalog="system" width="128" height="118"/>
         <image name="wallet.pass" catalog="system" width="115" height="128"/>
